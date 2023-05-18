@@ -16,16 +16,18 @@ fishermanWhoCant = 0
 if (fishermanCount > 0):
     for i in range(fishermanCount):
         fishermanWeight.append(int(input(f"Введите вес {i + 1} рыбака: ")))
-    for i in range(fishermanCount - 1):
-        if (fishermanWeight[i] + fishermanWeight[i + 1] <= maxBoatCapability):
-            boatCount += 1
-            i += 1
-        elif (fishermanWeight[i] <= maxBoatCapability):
-            boatCount += 1
+
+    fishermanWeight.sort()
+
+    left = 0
+    right = fishermanCount - 1
+
+    while left <= right:
+        if (fishermanWeight[left] + fishermanWeight[right] <= maxBoatCapability):
+            left += 1
+            right -= 1
         else:
-            fishermanWhoCant += 1
+            right -= 1
+        boatCount += 1
 
-print(f"Необходимо {boatCount} лодки, чтобы переправить {fishermanCount - fishermanWhoCant} путешественников")
-if (fishermanWhoCant > 0):
-    print(f"Количество путешественников, которые не могут переправится: {fishermanWhoCant} (лодка не вмещает такой вес)")
-
+print(f"Необходимо {boatCount} лодки, чтобы переправить {fishermanCount} путешественников")
