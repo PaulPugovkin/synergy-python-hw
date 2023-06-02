@@ -31,3 +31,35 @@
 # Чтобы заполнить матрицы различными значениями - воспользуйтесь модулем random
 #
 # Для подключения модуля random в код используйте строчку, которую нужно поместить в самое начало вашего скрипта
+import random
+
+def printMatrixRow(matrix):
+    for i in range(10):
+        print(matrix[i])
+
+matrix1 = []
+matrix2 = []
+matrix3 = []
+for i in range(10):
+    row1 = []
+    row2 = []
+    for j in range(10):
+        row1.append(random.randint(-1000, 1000))
+        row2.append(random.randint(-1000, 1000))
+    matrix1.append(row1)
+    matrix2.append(row2)
+
+for i in range(10):
+    row = []
+    for j in range(10):
+        row.append(matrix1[i][j] + matrix2[i][j])
+    matrix3.append(row)
+
+print('First matrix')
+printMatrixRow(matrix1)
+
+print('Second matrix')
+printMatrixRow(matrix2)
+
+print('Third matrix')
+printMatrixRow(matrix3)
