@@ -9,3 +9,8 @@
 #   # и так далее ...
 #   -5: -0.00032
 # }
+
+numDict = {}
+for num in range(10, -6, -1):
+    numDict[num] = num ** num
+print(numDict)

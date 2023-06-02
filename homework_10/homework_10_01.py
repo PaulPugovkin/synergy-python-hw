@@ -54,3 +54,32 @@
 # Для получения информации необходимо воспользоваться методами словаря keys() и values():
 #
 # Это желторотый питон по кличке "Каа". Возраст питомца: 19 лет. Имя владельца: Саша
+
+def checkAge(age):
+    if (age > 4) and (age < 21):
+        return f'{age} лет'
+    else:
+        i = age % 10
+        if i==1:
+            return f'{age} год'
+        elif i < 5:
+            return f'{age} года'
+        else:
+            return f'{age} лет'
+
+pet = {}
+
+petName = input("Введите кличку питомца: ")
+typeOfPet = input("Введите вид питомца: ")
+age = int(input("Введите возраст питомца: "))
+ownerName = input("Введите имя владельца: ")
+
+if (petName and typeOfPet and age and ownerName):
+    pet[petName] = {
+        "Вид питомца": typeOfPet,
+        "Возраст питомца": checkAge(age),
+        "Владелец питомца": ownerName
+    }
+    print(pet)
+else:
+    print("Incorrect input values, try again")
