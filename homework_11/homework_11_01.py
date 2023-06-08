@@ -11,24 +11,25 @@
 #
 # [720, 120, 24, 6, 2, 1]
 
-def factorial(n):
-    if n == 0:
+def factorial(num):
+    if num == 0:
         return 1
     else:
-        return n * factorial(n - 1)
+        return num * factorial(num - 1)
 
-def factorialList(n):
-    fact = factorial(n)
-    factorialLst = []
+def factorialList(num):
+    result = []
+    while num >= 1:
+        fact = 1
+        for i in range(1, num + 1):
+            fact *= i
+        result.append(fact)
+        num -= 1
+    return result
 
-    while fact >= 1:
-        factorialLst.append(fact)
-        fact -= 1
-
-    return factorialLst
 
 # Пример использования функции factorial_list
 num = int(input("Введите натуральное число: "))
-result = factorialList(num)
+result = factorialList(factorial(num))
 print("Факториал числа {}: {}".format(num, factorial(num)))
 print("Список факториалов: ", result)

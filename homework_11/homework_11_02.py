@@ -184,43 +184,26 @@ def update(petId):
     petInfo = getPet(petId)
     if petInfo:
         petName = list(petInfo.keys())[0]
-        petType = petInfo[petName]["Вид питомца"]
-        petAge = petInfo[petName]["Возраст питомца"]
-        ownerName = petInfo[petName]["Имя владельца"]
-        suffix = checkAge(petAge)
+        petData = petInfo[petName]
 
-        print("Информация о питомце:")
-        print("ID: {}".format(petId))
-        print("Имя питомца: {}".format(petName))
-        print("Вид питомца: {}".format(petType))
-        print("Возраст питомца: {} {}".format(petAge, suffix))
-        print("Имя владельца: {}".format(ownerName))
-
-        newPetName = input("Введите новое имя питомца (оставьте пустым для сохранения текущего имени): ")
-        newPetType = input("Введите новый вид питомца (оставьте пустым для сохранения текущего вида): ")
-        newPetAge = input("Введите новый возраст питомца (оставьте пустым для сохранения текущего возраста): ")
-        newOwnerName = input("Введите новое имя владельца (оставьте пустым для сохранения текущего имени): ")
-
-        if newPetName:
-            petInfo[newPetName] = petInfo.pop(petName)
+        newName = input("Введите новое имя питомца: ")
+        newPetType = input("Введите новый вид питомца: ")
+        newAge = int(input("Введите новый возраст питомца: "))
+        newOwnerName = input("Введите новое имя владельца: ")
 
         if newPetType:
-            petInfo[petName]["Вид питомца"] = newPetType
-
-        if newPetAge:
-            petInfo[petName]["Возраст питомца"] = int(newPetAge)
-
+            petData["Вид питомца"] = newPetType
+        if newAge:
+            petData["Возраст питомца"] = newAge
         if newOwnerName:
-            petInfo[petName]["Имя владельца"] = newOwnerName
+            petData["Имя владельца"] = newOwnerName
 
-        print("Информация о питомце после обновления:")
-        print("ID: {}".format(petId))
-        print("Имя питомца: {}".format(petName))
-        print("Вид питомца: {}".format(petInfo[petName]["Вид питомца"]))
-        print("Возраст питомца: {} {}".format(petInfo[petName]["Возраст питомца"], suffix))
-        print("Имя владельца: {}".format(petInfo[petName]["Имя владельца"]))
+        if newName != petName:
+            pets[petId] = {newName: petData}
+
+        print("Информация обновлена.")
     else:
-        print("Питомец с ID {} не найден.".format(petId))
+        print("Питомец с таким ID не найден.")
 
 
 def delete(petId):
@@ -259,7 +242,8 @@ while command != 'stop':
         petId = int(input('Enter pet id: '))
         read(petId)
     elif (command == 'update'):
-        update()
+        petId = int(input('Enter pet id: '))
+        update(petId)
     elif (command == 'delete'):
         petIdToDelete = int(input("Id to delete: "))
         delete(petIdToDelete)
