@@ -32,11 +32,10 @@ class Turtle:
         if (self.s > 1):
             self.s -= 1
     def count_moves(self):
-        countX = self.x2 - self.x
-        countY = self.y2 - self.y
+        countX = abs(self.x2 - self.x) / self.s
+        countY = abs(self.y2 - self.y) / self.s
         countXY = countX + countY
-        countWithStepSize = math.floor(countXY / self.s)
-        print(f'Минимальное количество действий, за которое черепашка сможет добраться до x2 y2 от текущей позиции = {countWithStepSize}')
+        print(f'Минимальное количество действий, за которое черепашка сможет добраться до x2 y2 от текущей позиции = {countXY}')
 
 turtle = Turtle(1,1,1,50,30)
 
