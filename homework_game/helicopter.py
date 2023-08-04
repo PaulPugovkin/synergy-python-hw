@@ -12,7 +12,6 @@ class Helicopter:
         self.width = width
 
     def move(self, dx, dy):
-        print('heli move')
         nx = dx + self.x
         ny = dy + self.y
         isInFrame = 0 <= nx < self.height and 0 <= ny < self.width

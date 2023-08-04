@@ -1,10 +1,10 @@
 import time
 import os
-from pynput.keyboard import Listener
+from pynput import keyboard
 from map import Map
 from helicopter import Helicopter
 
-TICK_SLEEP = 1
+TICK_SLEEP = 0.150
 TREE_UPDATE = 50
 FIRE_UPDATE = 100
 MAP_WIDTH, MAP_HEIGHT = 10, 10
@@ -22,22 +22,22 @@ tick = 1
 
 def actionKey(key):
     global helicopter
-    pressedKey = key.char()
+    pressedKey = key.char
     print(pressedKey)
     if pressedKey in MOVES.keys():
         dx = MOVES[pressedKey][0]
-        dy = MOVES[0][pressedKey]
+        dy = MOVES[pressedKey][1]
         helicopter.move(dx, dy)
 
 
-listener = Listener(
+listener = keyboard.Listener(
     on_press=None,
     on_release=actionKey,
 )
 listener.start()
 
 while True:
-    os.system("clear")
+    os.system("cls")
     field.printMap(helicopter)
     tick += 1
     time.sleep(TICK_SLEEP)
